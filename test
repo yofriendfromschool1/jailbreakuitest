@@ -19,7 +19,7 @@ local mobileaim = Instance.new("TextButton")
 --Properties:
 
 sorryforbadui.Name = "sorryforbadui"
-sorryforbadui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+sorryforbadui.Parent = game.CoreGui
 sorryforbadui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 scrollframe.Name = "scrollframe"
