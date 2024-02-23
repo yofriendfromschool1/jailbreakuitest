@@ -30,7 +30,6 @@ scrollframe.BorderColor3 = Color3.fromRGB(0, 0, 0)
 scrollframe.BorderSizePixel = 0
 scrollframe.Position = UDim2.new(0.399757713, 0, 0.223325059, 0)
 scrollframe.Size = UDim2.new(0, 413, 0, 446)
-scrollframe.Draggable = true
 
 close.Name = "close"
 close.Parent = scrollframe
@@ -157,47 +156,47 @@ mobileaim.TextSize = 29.000
 
 -- Scripts:
 
-local function VXLGQ_fake_script() -- close.Closebuttonscript 
+local function MUCGJDL_fake_script() -- close.Closebuttonscript 
 	local script = Instance.new('LocalScript', close)
 
 	script.Parent.MouseButton1Down:Connect(function()
 		script.Parent.Parent.Parent:Destroy()
 	end)
 end
-coroutine.wrap(VXLGQ_fake_script)()
-local function XKRXKPJ_fake_script() -- infyieldbutton.infyieldbuttonscript 
+coroutine.wrap(MUCGJDL_fake_script)()
+local function YLSH_fake_script() -- infyieldbutton.infyieldbuttonscript 
 	local script = Instance.new('LocalScript', infyieldbutton)
 
 	script.Parent.MouseButton1Down:Connect(function()
 		loadstring(game:HttpGet(_G.infydtype))()
 	end)
 end
-coroutine.wrap(XKRXKPJ_fake_script)()
-local function RQSVWK_fake_script() -- owlhubbutton.owlhubbbuttonscript 
+coroutine.wrap(YLSH_fake_script)()
+local function ZROLJQU_fake_script() -- owlhubbutton.owlhubbbuttonscript 
 	local script = Instance.new('LocalScript', owlhubbutton)
 
 	script.Parent.MouseButton1Down:Connect(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt"))();
 	end)
 end
-coroutine.wrap(RQSVWK_fake_script)()
-local function MVCUIK_fake_script() -- jailmonkeybutton.jailmonkeybutton 
+coroutine.wrap(ZROLJQU_fake_script)()
+local function REAYQ_fake_script() -- jailmonkeybutton.jailmonkeybutton 
 	local script = Instance.new('LocalScript', jailmonkeybutton)
 
 	script.Parent.MouseButton1Down:Connect(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/KuriWasTaken/MonkeyScripts/main/JailMonkey.lua"))()
 	end)
 end
-coroutine.wrap(MVCUIK_fake_script)()
-local function BZNZYK_fake_script() -- chaoshubbutton.chaoshubbuttonscript 
+coroutine.wrap(REAYQ_fake_script)()
+local function PBEDJU_fake_script() -- chaoshubbutton.chaoshubbuttonscript 
 	local script = Instance.new('LocalScript', chaoshubbutton)
 
 	script.Parent.MouseButton1Down:Connect(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/xChaoticVoid/Chaos-Hub-v1/main/ChaosHub.lua"))()
 	end)
 end
-coroutine.wrap(BZNZYK_fake_script)()
-local function BZFJP_fake_script() -- fpsunlockbutton.fpsunlockbuttonscript 
+coroutine.wrap(PBEDJU_fake_script)()
+local function ORNCRD_fake_script() -- fpsunlockbutton.fpsunlockbuttonscript 
 	local script = Instance.new('LocalScript', fpsunlockbutton)
 
 	script.Parent.MouseButton1Down:Connect(function()
@@ -206,16 +205,16 @@ local function BZFJP_fake_script() -- fpsunlockbutton.fpsunlockbuttonscript
 		end
 	end)
 end
-coroutine.wrap(BZFJP_fake_script)()
-local function MLBYZFF_fake_script() -- discordbutton.discordbuttonscript 
+coroutine.wrap(ORNCRD_fake_script)()
+local function SNPNCCP_fake_script() -- discordbutton.discordbuttonscript 
 	local script = Instance.new('LocalScript', discordbutton)
 
 	script.Parent.MouseButton1Down:Connect(function()
 		setclipboard(string)
 	end)
 end
-coroutine.wrap(MLBYZFF_fake_script)()
-local function GAPQDA_fake_script() -- mobileaim.mobileaimscript 
+coroutine.wrap(SNPNCCP_fake_script)()
+local function MNUJ_fake_script() -- mobileaim.mobileaimscript 
 	local script = Instance.new('LocalScript', mobileaim)
 
 	script.Parent.MouseButton1Down:Connect(function()
@@ -326,4 +325,48 @@ local function GAPQDA_fake_script() -- mobileaim.mobileaimscript
 		end)
 	end)
 end
-coroutine.wrap(GAPQDA_fake_script)()
+coroutine.wrap(MNUJ_fake_script)()
+local function MLAEHFP_fake_script() -- scrollframe.Dragify 
+	local script = Instance.new('LocalScript', scrollframe)
+
+	local UserInputService = game:GetService("UserInputService")
+	
+	local gui = script.Parent
+	
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+	
+	local function update(input)
+		local delta = input.Position - dragStart
+		gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+	
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = gui.Position
+	
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+	
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+	
+	UserInputService.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
+end
+coroutine.wrap(MLAEHFP_fake_script)()
